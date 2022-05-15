@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-12 mt-10">
 
-        <div class="tf-herb.ng customized-input-wrapper">
+        <div class="tf-shopExpress customized-input-wrapper">
           <span class="icon-user input-icon"></span>
           <input type="text" class="customized-input" placeholder="Email or Mobile Number"
             [value]="userRequest.username!=undefined?userRequest.username:''" name="username" required="true"
@@ -14,7 +14,7 @@
       </div>
 
       <div class="col-md-12 mt-10">
-        <div class="tf-herb.ng customized-input-wrapper">
+        <div class="tf-shopExpress customized-input-wrapper">
           <span class="icon-lock input-icon"></span>
           <input type="{{isVisible?'text':'password'}}" class="customized-input password-field" placeholder="Password" name="password" required="true"
             (keyup)="form.validate($event)" />
@@ -32,23 +32,12 @@
         </div>
       </div>
       <div class="col-md-12 mt-10">
-        <button type="button" class="btn btn-herb.ng fill" (click)="signIn()">Sign
+        <button type="button" class="btn btn-shopExpress fill" (click)="signIn()">Sign
           In</button>
       </div>
     </div>
   </form>
-  <div class="form" class="mt-4 mb-4">
-    <img src="assets/images/separator-pipe.png" class="img seperator">
-  </div>
 
-  <div class="row">
-    <div class="login-width-google col-md-6" (click)="signUpWithGoogle()">
-      <img src="assets/images/lg.png" class="img login-with-social-icon">
-    </div>
-    <div class="login-width-google col-md-6">
-      <img src="assets/images/lf.png" class="img login-with-social-icon" (click)="signInWithFB()">
-    </div>
-  </div>
   <div class="footer row">
     <div class="col-md-8 left mt-30">
       Don't have an Account? <a [routerLink]="[ '/signup']">Register Now</a>

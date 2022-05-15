@@ -5,16 +5,16 @@
     <form name="form" method="POST">
         <div class="row">
             <div class="col-md-12 mt-30">
-                <input type="text" class="tf-herb.ng disabled"[value]="user.mobile!=undefined?user.mobile:''"  placeholder="Email or Mobile Number"
+                <input type="text" class="tf-shopExpress disabled"[value]="user.mobile!=undefined?user.mobile:''"  placeholder="Email or Mobile Number"
                     name="username" required="true" readonly="true" disabled="true" (keyup)="form.validate($event)" />
             </div>
             <div class="col-md-12 mt-30">
-                <input type="number" class="tf-herb.ng" maxlength="6" placeholder="Enter OTP" name="otp" required="true"
+                <input type="number" class="tf-shopExpress" maxlength="6" placeholder="Enter OTP" name="otp" required="true"
                     (keyup)="form.validate($event)" />
             </div>
         </div>
         <div class="fill mt-30">
-            <button type="button" class="btn btn-herb.ng fill" (click)="verifyAccount()">Verify Account</button>
+            <button type="button" class="btn btn-shopExpress fill" (click)="verifyAccount()">Verify Account</button>
         </div>
     </form>
 

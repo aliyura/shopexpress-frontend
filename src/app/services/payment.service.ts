@@ -54,7 +54,7 @@ export class PaymentService {
         customizations: {
           title: 'ShopExpress',
           description: 'Payment for Items in your Cart',
-          logo:'https://herb.ng.s3.amazonaws.com/pictures/herb.ng%203.jpg',
+          logo:'https://shopExpress.s3.amazonaws.com/pictures/shopExpress%203.jpg',
         },
       });
     } else {

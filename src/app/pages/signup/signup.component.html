@@ -5,22 +5,22 @@
 		<div class="row">
 			<div class="col-sm-6  mt-10">
 				<small>Name<strong class="native-text">*</strong></small>
-				<input type="text" class="tf-herb.ng" placeholder="Full Name" name="name" required="true"
+				<input type="text" class="tf-shopExpress" placeholder="Full Name" name="name" required="true"
 					(keyup)="form.validate($event)" />
 			</div>
 			<div class="col-sm-6  mt-10">
 				<small>Email Address<strong class="native-text">*</strong></small>
-				<input type="email" class="tf-herb.ng" placeholder="Email Address" name="email" required="true"
+				<input type="email" class="tf-shopExpress" placeholder="Email Address" name="email" required="true"
 					(keyup)="form.validate($event)" />
 			</div>
 			<div class="col-sm-6  mt-10">
 				<small>Mobile Number<strong class="native-text">*</strong></small>
-				<input type="tel" class="tf-herb.ng" placeholder="Mobile Number" maxlength="14" name="mobile" required="true"
+				<input type="tel" class="tf-shopExpress" placeholder="Mobile Number" maxlength="14" name="mobile" required="true"
 					(keyup)="form.validate($event)" />
 			</div>
 			<div class="col-sm-6  mt-10">
 				<small>Gender<strong class="native-text">*</strong></small>
-				<select name="gender" class="tf-herb.ng" required="true" (change)="form.validate($event)">
+				<select name="gender" class="tf-shopExpress" required="true" (change)="form.validate($event)">
 					<option value="" selected>Gender</option>
 					<option>Male</option>
 					<option>Female</option>
@@ -28,7 +28,7 @@
 			</div>
 			<div class="col-sm-6  mt-10" hidden="true">
 				<small>Country<strong class="native-text">*</strong></small>
-				<select name="country" class="tf-herb.ng" disabled="" aria-readonly="true" required="true"
+				<select name="country" class="tf-shopExpress" disabled="" aria-readonly="true" required="true"
 					(keyup)="form.validate($event)">
 					<option value="" disabled>-- Choose COuntry --</option>
 					<option value="nigeria">Nigeria</option>
@@ -38,17 +38,17 @@
 
 			<div class="col-sm-6  mt-10">
 				<small>Password<strong class="native-text">*</strong></small>
-				<input type="password" class="tf-herb.ng" placeholder="Password" name="password" required="true"
+				<input type="password" class="tf-shopExpress" placeholder="Password" name="password" required="true"
 					(keyup)="form.validate($event)" />
 			</div>
 			<div class="col-sm-6  mt-10">
 				<small>Confirm Password<strong class="native-text">*</strong></small>
-				<input type="password" class="tf-herb.ng" placeholder="Confirm Password" name="confirmPassword"
+				<input type="password" class="tf-shopExpress" placeholder="Confirm Password" name="confirmPassword"
 					required="true" (keyup)="form.validate($event)" />
 			</div>
 			<div class="col-sm-6  mt-10">
 				<small>State<strong class="native-text">*</strong></small>
-				<select name="city" class="tf-herb.ng" required="true" (change)="form.validate($event)">
+				<select name="city" class="tf-shopExpress" required="true" (change)="form.validate($event)">
 					<option disabled value="" selected>-- Choose State --</option>
 					<option value="{{locs.code}}" *ngFor="let locs of locations">{{locs.description}}</option>
 
@@ -56,18 +56,18 @@
 			</div>
 			<div class="col-sm-6  mt-10">
 				<small>Home Address</small>
-				<textarea class="ta-herb.ng" placeholder="Address" name="address"></textarea>
+				<textarea class="ta-shopExpress" placeholder="Address" name="address"></textarea>
 			</div>
 			<div class="form-group row  mt-10">
 				<div class="col-md-0 checkbox">
 					<input type="checkbox" class="checkbox" name="newsLetter">
 				</div>
 				<div class="col label">
-					I want to receive herb.ng Newsletters
+					I want to receive shopExpress Newsletters
 				</div>
 			</div>
 			<div class="col-md-12 mt-10">
-				<button type="button" class="btn btn-herb.ng fill" (click)="signUp()">Sign
+				<button type="button" class="btn btn-shopExpress fill" (click)="signUp()">Sign
 					Up</button>
 			</div>
 		</div>

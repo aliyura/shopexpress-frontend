@@ -13,13 +13,13 @@
   z-index: 999999;
   margin-top: 74px !important;
 }
-.herb.ng-hide {
+.shopExpress-hide {
   display: none !important;
 }
-.herb.ng-show {
+.shopExpress-show {
   display: block;
 }
-.herb.ng-overlay {
+.shopExpress-overlay {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -28,10 +28,10 @@
   z-index: 100000;
   background-color: rgb(0 0 0 / 20%);
 }
-.herb.ng-disabled {
+.shopExpress-disabled {
   opacity: 0.6 !important;
 }
-.herb.ng-spinner {
+.shopExpress-spinner {
   width: 100px;
   margin: 10px auto;
   text-align: center;
@@ -179,7 +179,7 @@
 .file-chooser .col {
   padding-left: 0;
 }
-.file-chooser .tr-herb.ng {
+.file-chooser .tr-shopExpress {
   width: 100%;
   height: 50px;
   padding: 10px;
@@ -190,7 +190,7 @@
   text-align: left;
   padding-left: 15px;
 }
-.file-chooser .tf-herb.ng {
+.file-chooser .tf-shopExpress {
   width: 100%;
   border-left: 0;
 }
@@ -202,7 +202,7 @@
 .seprated-date-container .col {
   padding: 0;
 }
-.input-container .seprated-date-container .tf-herb.ng {
+.input-container .seprated-date-container .tf-shopExpress {
   width: 100%;
   border: 1px solid #777777;
   border-radius: 0;
@@ -269,8 +269,8 @@
 .padded {
   color: #777777;
 }
-.tf-herb.ng,
-.ta-herb.ng {
+.tf-shopExpress,
+.ta-shopExpress {
   width: 100%;
   outline: none !important;
   border: 1px solid #dadada;
@@ -282,17 +282,17 @@
   background: #fff;
 }
 
-.tf-herb.ng {
+.tf-shopExpress {
   height: 50px;
 }
-.herb.ng-rs {
+.shopExpress-rs {
   width: 300px;
   margin: auto;
   margin-top: 20%;
   text-align: center;
   padding-bottom: 7px;
 }
-.btn-herb.ng {
+.btn-shopExpress {
   width: auto;
   font-weight: normal;
   font-size: 16px;
@@ -307,8 +307,8 @@
   padding-right: 20px;
   cursor: pointer;
 }
-.btn-herb.ng:hover,
-.btn-herb.ng:focus {
+.btn-shopExpress:hover,
+.btn-shopExpress:focus {
   background: #333;
 }
 .share-container {
@@ -318,7 +318,7 @@
   margin: 0;
   width: 100%;
 }
-.share-buttons .btn-herb.ng-share {
+.share-buttons .btn-shopExpress-share {
   border-radius: 0;
   margin: 0;
   display: inline-flex;
@@ -374,9 +374,9 @@
     padding: 20px;
   }
 }
-.btn-herb.ng:hover,
-.btn-herb.ng:focus,
-.btn-herb.ng:active {
+.btn-shopExpress:hover,
+.btn-shopExpress:focus,
+.btn-shopExpress:active {
   opacity: 0.9;
   color: #dddddd;
 }
@@ -420,7 +420,7 @@
   color: #e82d2d;
   font-weight: bold;
 }
-.status-container .status .btn-herb.ng {
+.status-container .status .btn-shopExpress {
   width: 100%;
   margin-top: 2em;
 }
@@ -468,12 +468,12 @@
   .input-container .file-chooser .prefix {
     width: 100px;
   }
-  .input-container .seprated-date-container .tf-herb.ng {
+  .input-container .seprated-date-container .tf-shopExpress {
     padding: 5px;
     font-size: 12px;
     font-weight: bold;
   }
-  .herb.ng-rs {
+  .shopExpress-rs {
     width: 100%;
     display: block;
     text-align: center;

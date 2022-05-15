@@ -14,7 +14,7 @@
                 <div id="product-1" class="tab-pane fade in show active">
                   <div class="product-details-thumb">
                     <img class="product-view" (error)="setDefault($event)"
-                      src="https://herb.ng.s3.amazonaws.com/pictures/{{product.thumbnail}}" alt="" />
+                      src="https://shopExpress.s3.amazonaws.com/pictures/{{product.thumbnail}}" alt="" />
                   </div>
                 </div>
               </div>
@@ -22,7 +22,7 @@
                 <li *ngFor="let image of product.images.split(',')">
                   <a *ngIf="image!=null" class="active" data-toggle="tab" href="#product-1">
                     <img class="sub-product-veiw" (click)="switchView(image)" (error)="setDefault($event)"
-                      src="https://herb.ng.s3.amazonaws.com/pictures/{{image}}" alt="" /></a>
+                      src="https://shopExpress.s3.amazonaws.com/pictures/{{image}}" alt="" /></a>
                 </li>
               </ul>
             </div>
@@ -96,7 +96,7 @@
                               <label>Select <br/>Quantity:</label>
                             </div>
                             <div class="col-6">
-                              <select class="tf-herb.ng quantity-field" name="quantity"
+                              <select class="tf-shopExpress quantity-field" name="quantity"
                                 (change)="onQuantityChange($event)" ngModel="1">
                                 <ng-container *ngFor="let item of app.arrayOf(maxOrderQuantity); let i=index">
                                   <option *ngIf="i>0">{{i}}</option>
@@ -110,7 +110,7 @@
                               <label>Select <br/>Color:</label>
                             </div>
                             <div class="col-6">
-                              <button type="button" (click)="toggleColorsOptionDrawer()" class="tf-herb.ng options-trigger"> {{
+                              <button type="button" (click)="toggleColorsOptionDrawer()" class="tf-shopExpress options-trigger"> {{
                                 this.selectedColors.length>0?this.selectedColors.toString():'Any'}} <span
                                   class="fa fa-chevron-down"></span></button>
                               <div class="option-dropdown" id="colorsOptionDrawer">
@@ -129,7 +129,7 @@
                               <label>Select <br/>Size:</label>
                             </div>
                             <div class="col-6">
-                              <button type="button"  (click)="toggleSizesOptionDrawer()" class="tf-herb.ng options-trigger">{{
+                              <button type="button"  (click)="toggleSizesOptionDrawer()" class="tf-shopExpress options-trigger">{{
                                 this.selectedSizes.length>0?this.selectedSizes.toString():'Any'}} <span
                                   class="fa fa-chevron-down"></span></button>
                               <div class="option-dropdown" id="sizesOptionDrawer">

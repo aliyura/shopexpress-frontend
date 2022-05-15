@@ -50,7 +50,7 @@
                   <div id="productViewer" class="tab-pane fade in show active">
                     <div class="product-details-thumb">
                       <img class="product-veiw" (error)="setDefault($event)"
-                        src="https://herb.ng.s3.amazonaws.com/pictures/{{this.currentImage}}" alt="" />
+                        src="https://shopExpress.s3.amazonaws.com/pictures/{{this.currentImage}}" alt="" />
                     </div>
                   </div>
 
@@ -59,7 +59,7 @@
                   <li *ngFor="let image of product!.images!.split(',')">
                     <a class="active" data-toggle="tab" href="#product-1">
                       <img class="sub-product-veiw" (click)="switchView(image)" (error)="setDefault($event)"
-                        src="https://herb.ng.s3.amazonaws.com/pictures/{{image}}" alt="" /></a>
+                        src="https://shopExpress.s3.amazonaws.com/pictures/{{image}}" alt="" /></a>
                   </li>
 
                 </ul>
@@ -122,7 +122,7 @@
                                 <label>Select Quantity:</label>
                               </div>
                               <div class="col-6">
-                                <select class="tf-herb.ng quantity-field" name="quantity"
+                                <select class="tf-shopExpress quantity-field" name="quantity"
                                   (change)="onQuantityChange($event)" ngModel="1">
                                   <ng-container *ngFor="let item of app.arrayOf(maxOrderQuantity); let i=index">
                                     <option *ngIf="i>0">{{i}}</option>
@@ -137,7 +137,7 @@
                               </div>
                               <div class="col-6">
                                 <button type="button" (click)="toggleColorsOptionDrawer()"
-                                  class="tf-herb.ng options-trigger"> {{
+                                  class="tf-shopExpress options-trigger"> {{
                                   this.selectedColors.length>0?this.selectedColors.toString():'Any'}} <span
                                     class="fa fa-chevron-down"></span></button>
                                 <div class="option-dropdown" id="colorsOptionDrawer">
@@ -157,7 +157,7 @@
                               </div>
                               <div class="col-6">
                                 <button type="button" (click)="toggleSizesOptionDrawer()"
-                                  class="tf-herb.ng options-trigger">{{
+                                  class="tf-shopExpress options-trigger">{{
                                   this.selectedSizes.length>0?this.selectedSizes.toString():'Any'}} <span
                                     class="fa fa-chevron-down"></span></button>
                                 <div class="option-dropdown" id="sizesOptionDrawer">
@@ -198,21 +198,21 @@
                                 id="st-1">
                                 <div class="st-btn st-first" data-network="facebook" style="display: inline-block;">
                                   <a
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https://herb.ng.com.ng/product/{{product.id}}">
+                                    href="https://www.facebook.com/sharer/sharer.php?u=https://shopExpress.com.ng/product/{{product.id}}">
                                     <img alt="facebook sharing button"
                                       src="https://platform-cdn.sharethis.com/img/facebook.svg">
                                   </a>
                                 </div>
                                 <div class="st-btn" data-network="twitter" style="display: inline-block;">
                                   <a
-                                    href="https://twitter.com/intent/tweet?url=https://herb.ng.com.ng/product/{{product.id}}&text=Buy {{product.name}} as NGN {{this.app.toMoney(this.product.price)}} on ShopExpress">
+                                    href="https://twitter.com/intent/tweet?url=https://shopExpress.com.ng/product/{{product.id}}&text=Buy {{product.name}} as NGN {{this.app.toMoney(this.product.price)}} on ShopExpress">
                                     <img alt="twitter sharing button"
                                       src="https://platform-cdn.sharethis.com/img/twitter.svg">
                                   </a>
                                 </div>
                                 <div class="st-btn" data-network="pinterest" style="display: inline-block;">
                                   <a
-                                    href="https://wa.me/?text=Buy {{product.name}} as NGN {{this.app.toMoney(this.product.price)}} on ShopExpress. Click https://herb.ng.com.ng/product/{{product.id}}">
+                                    href="https://wa.me/?text=Buy {{product.name}} as NGN {{this.app.toMoney(this.product.price)}} on ShopExpress. Click https://shopExpress.com.ng/product/{{product.id}}">
                                     <img alt="pinterest sharing button"
                                       src="https://platform-cdn.sharethis.com/img/whatsapp.svg">
                                   </a>
@@ -220,7 +220,7 @@
                                 </div>
                                 <div class="st-btn" data-network="email" style="display: inline-block;">
                                   <a
-                                    href="https://www.linkedin.com/shareArticle?mini=true&url=https://herb.ng.com.ng/product/{{product.id}}">
+                                    href="https://www.linkedin.com/shareArticle?mini=true&url=https://shopExpress.com.ng/product/{{product.id}}">
                                     <img alt="email sharing button"
                                       src="https://platform-cdn.sharethis.com/img/linkedin.svg">
                                   </a>
@@ -394,7 +394,7 @@
                             </div>
                           </div>
                           <div class="col-sm-12">
-                            <textarea name="review" ngModel class="tf-herb.ng" required="true"
+                            <textarea name="review" ngModel class="tf-shopExpress" required="true"
                               placeholder="Type your Comment..."></textarea>
                           </div>
                           <div class="col-sm-12">
@@ -443,7 +443,7 @@
                 </div>
                 <div class="product-thumb">
                   <a [routerLink]="['/product',product.id]"><img class="img img-responsive product-image"
-                      (error)="setDefault($event)" src="https://herb.ng.s3.amazonaws.com/pictures/{{product.thumbnail}}"
+                      (error)="setDefault($event)" src="https://shopExpress.s3.amazonaws.com/pictures/{{product.thumbnail}}"
                       alt="" /></a>
                   <div class="downsale" *ngIf="product.status=='AC'">
                     <span>-</span>{{product.price>0?percentage:100}}%

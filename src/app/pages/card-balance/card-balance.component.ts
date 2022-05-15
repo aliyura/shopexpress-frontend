@@ -62,7 +62,7 @@ export class CardBalanceComponent implements OnInit {
     {
       this.router.navigate(['/login'])
     }
-    this.titleService.setTitle('Check your herb.ng card balance');
+    this.titleService.setTitle('Check your shopExpress card balance');
   }
 
 }

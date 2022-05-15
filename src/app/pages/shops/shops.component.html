@@ -16,7 +16,7 @@
                 <div class="col-md-2 shop-card" *ngFor="let shop of shops">
                     <div class="single-product-cat widget card">
                         <a [routerLink]="['/shop',shop.tag]"><img
-                                src="{{shop.logo!=null?'https://herb.ng.s3.amazonaws.com/pictures/'+shop.logo:'assets/images/nologo.png'}}"
+                                src="{{shop.logo!=null?'https://shopExpress.s3.amazonaws.com/pictures/'+shop.logo:'assets/images/nologo.png'}}"
                                 height="180" width="180" alt="" /></a>
                         <h4><a [routerLink]="['/shop',shop.tag]">{{shop.name | excerpt :15}}</a></h4>
                         <p>{{shop.city}}, Nigeria</p>
@@ -31,7 +31,7 @@
                             <li><a class="active">{{this.curentPage}}</a></li>
                             <li>of</li>
                             <li><a>{{(this.totalPages)-1}}</a></li>
-                            <li><a class="btn btn-herb.ng btn-slim" (click)="nextPage(this.curentPage);"><i
+                            <li><a class="btn btn-shopExpress btn-slim" (click)="nextPage(this.curentPage);"><i
                                         class="fa fa-long-arrow-right"></i> See More</a></li>
                         </ul>
                     </div>

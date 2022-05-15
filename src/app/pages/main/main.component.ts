@@ -17,7 +17,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.app.loadJsFile("assets/js/main.js");
     this.titleService.setTitle(
-      'Welcome to herb.ng Online Shopping for Organic, Fashion, Electronic and Many More products - ShopExpress'
+      'Welcome to shopExpress Online Shopping for Organic, Fashion, Electronic and Many More products - ShopExpress'
     );
   }
 

@@ -83,7 +83,7 @@
                     </div>
                     <div class="product-thumb">
                       <a [routerLink]="['/product', item.id]"><img
-                          src="https://herb.ng.s3.amazonaws.com/pictures/{{item.thumbnail}}"
+                          src="https://shopExpress.s3.amazonaws.com/pictures/{{item.thumbnail}}"
                           class="product-image" alt="" height="150px" width="100%" /></a>
                       <div class="downsale" *ngIf="item.status=='AC'">
                         <span>-</span>{{item.price>0 ?percentage:100}}%
@@ -135,7 +135,7 @@
                 <li><a class="active">{{this.itemsData['number']}}</a></li>
                 <li>of</li>
                 <li><a>{{(this.itemsData['totalPages'])-1}}</a></li>
-                <li><a class="btn btn-herb.ng btn-slim" (click)="nextPage(this.itemsData['number']);"><i
+                <li><a class="btn btn-shopExpress btn-slim" (click)="nextPage(this.itemsData['number']);"><i
                       class="fa fa-long-arrow-right"></i> See More</a></li>
               </ul>
             </div>

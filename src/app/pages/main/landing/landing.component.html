@@ -317,7 +317,7 @@
                         <div class="product-thumb">
                           <a [routerLink]="['/product',newArr.id]"><img class="img img-responsive product-image"
                               (error)="setDefault($event)"
-                              src="https://herb.ng.s3.amazonaws.com/pictures/{{newArr.thumbnail}}" alt="" /></a>
+                              src="https://shopExpress.s3.amazonaws.com/pictures/{{newArr.thumbnail}}" alt="" /></a>
                           <div class="downsale" *ngIf="newArr.status=='AC'">
                             <span>-</span>{{newArr.price>0 ?percentage:100}}%
                           </div>
@@ -342,7 +342,7 @@
                         </div>
                       </div>
                     </div>
-                    <a class="btn btn-herb.ng btn-view-more mobile fill" [routerLink]="['/market']">Explore More &nbsp;<i class="icon fa fa-chevron-right"></i></a>
+                    <a class="btn btn-shopExpress btn-view-more mobile fill" [routerLink]="['/market']">Explore More &nbsp;<i class="icon fa fa-chevron-right"></i></a>
                   </ng-container>
                   <ng-container *ngIf="newArrivalsItems==null">
                     <div class="error-message">
@@ -367,7 +367,7 @@
                         <div class="product-thumb">
                           <a [routerLink]="['/product',topPro.id]"><img
                               class="img img-responsive product-image product-view" (error)="setDefault($event)"
-                              src="https://herb.ng.s3.amazonaws.com/pictures/{{topPro.thumbnail}}" alt="" /></a>
+                              src="https://shopExpress.s3.amazonaws.com/pictures/{{topPro.thumbnail}}" alt="" /></a>
                           <div class="downsale" *ngIf="topPro.status=='AC'"><span>-</span>{{
                             topPro.price>0 ?percentage:100
                             }}%</div>
@@ -392,7 +392,7 @@
                         </div>
                       </div>
                     </div>
-                    <a class="btn btn-herb.ng btn-view-more mobile fill" [routerLink]="['/market']">Explore More &nbsp;<i class="icon fa fa-chevron-right"></i></a>
+                    <a class="btn btn-shopExpress btn-view-more mobile fill" [routerLink]="['/market']">Explore More &nbsp;<i class="icon fa fa-chevron-right"></i></a>
                   </ng-container>
                   <ng-container *ngIf="topProducts==null">
                     <h2>No Product Available</h2>
@@ -443,7 +443,7 @@
   <div class="container">
     <app-phone-center></app-phone-center>
   </div>
-  <a class="btn btn-herb.ng btn-view-more mobile" [routerLink]="['/market',7]">Explore More &nbsp;<i class="icon fa fa-chevron-right"></i></a>
+  <a class="btn btn-shopExpress btn-view-more mobile" [routerLink]="['/market',7]">Explore More &nbsp;<i class="icon fa fa-chevron-right"></i></a>
 </div>
 <!--banner-area-start-->
 <div class="banner-area mt-10">
@@ -475,7 +475,7 @@
     <div class="container">
       <app-fabric-center></app-fabric-center>
     </div>
-    <a class="btn btn-herb.ng btn-view-more mobile" [routerLink]="['/market',1]">Explore More &nbsp;<i class="icon fa fa-chevron-right"></i></a>
+    <a class="btn btn-shopExpress btn-view-more mobile" [routerLink]="['/market',1]">Explore More &nbsp;<i class="icon fa fa-chevron-right"></i></a>
   </div>
   <div class="container main-offer-wrapper">
     <img src="assets/images/main-offer1.png" class="product-view" alt="" />
@@ -484,7 +484,7 @@
     <div class="container">
       <app-baby-care></app-baby-care>
     </div>
-    <a class="btn btn-herb.ng btn-view-more mobile" [routerLink]="['/market',12]">Explore More &nbsp;<i class="icon fa fa-chevron-right"></i></a>
+    <a class="btn btn-shopExpress btn-view-more mobile" [routerLink]="['/market',12]">Explore More &nbsp;<i class="icon fa fa-chevron-right"></i></a>
   </div>
 
 </div>

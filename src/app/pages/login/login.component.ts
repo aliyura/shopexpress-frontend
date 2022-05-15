@@ -239,6 +239,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
-    this.titleService.setTitle('Login to your herb.ng Account');
+    this.titleService.setTitle('Login to your shopExpress Account');
   }
 }

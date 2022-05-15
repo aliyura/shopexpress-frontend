@@ -18,7 +18,7 @@
                         <div class="product-thumb">
                             <a [routerLink]="['/product',item.id]"><img class="img img-responsive product-image"
                                     (error)="setDefault($event)"
-                                    src="https://herb.ng.s3.amazonaws.com/pictures/{{item.thumbnail}}"
+                                    src="https://shopExpress.s3.amazonaws.com/pictures/{{item.thumbnail}}"
                                     alt="" /></a>
                             <div class="downsale" *ngIf="item.status=='AC'">
                                 <span>-</span>{{item.price>0 ?percentage:100}}%

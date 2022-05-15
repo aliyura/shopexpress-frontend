@@ -131,6 +131,6 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadLocations();
-    this.titleService.setTitle('Create your new herb.ng Account');
+    this.titleService.setTitle('Create your new shopExpress Account');
   }
 }

@@ -59,7 +59,7 @@ export class AppCluster {
   decodeOption(status) {
     switch (status) {
       case 'LVCARD':
-        return 'herb.ng Card';
+        return 'shopExpress Card';
       case 'COD':
         return 'Cash on Delivery';
       case 'BANK':

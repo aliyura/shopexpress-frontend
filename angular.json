@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "herb.ng-frontend": {
+    "shopExpress-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "herb.ng-frontend:build"
+            "browserTarget": "shopExpress-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "herb.ng-frontend:build:production"
+              "browserTarget": "shopExpress-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "herb.ng-frontend:build"
+            "browserTarget": "shopExpress-frontend:build"
           }
         },
         "test": {
@@ -107,18 +107,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "herb.ng-frontend:serve"
+            "devServerTarget": "shopExpress-frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "herb.ng-frontend:serve:production"
+              "devServerTarget": "shopExpress-frontend:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "herb.ng-frontend",
+  "defaultProject": "shopExpress-frontend",
   "cli": {
     "analytics": "d8c62961-0ad3-49be-a876-7eb72eca5dab"
   }

@@ -55,7 +55,7 @@ export class ActivateCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.authorized = this.authService.isAuthenticated;
-    this.titleService.setTitle('Activate your herb.ng card and start shopping now');
+    this.titleService.setTitle('Activate your shopExpress card and start shopping now');
   }
 
 }

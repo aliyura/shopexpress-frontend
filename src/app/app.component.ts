@@ -22,7 +22,7 @@ import { LoginToken } from './models/login-token';
 })
 export class AppComponent implements OnInit {
   title =
-    'Welcome to herb.ng Online Shopping for Organic, Fashion, Electronic and Many More products  - ShopExpress';
+    'Welcome to shopExpress Online Shopping for Organic, Fashion, Electronic and Many More products  - ShopExpress';
   isPinging: boolean = true;
   isUp: boolean = false;
 

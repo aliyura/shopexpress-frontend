@@ -39,6 +39,6 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Reset your herb.ng Password');
+    this.titleService.setTitle('Reset your shopExpress Password');
   }
 }
