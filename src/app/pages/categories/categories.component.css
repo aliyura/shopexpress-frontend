@@ -1,0 +1,22 @@
+.five-catItems{
+    margin-bottom: 2em;
+}
+@media(max-width:800px){
+    .product-card{
+        width: 33%;
+        min-width: 33%;
+    }
+    .product-image{
+        width: 100%;
+        height: 150px;
+    }
+}
+@media(max-width:600px){
+    .product-card{
+        width: 50%;
+        min-width: 50%;
+    }
+    .product-image{
+        height: 100px;
+    }
+}

@@ -1,0 +1,8 @@
+.mainmenu-area {
+  margin-bottom: 2em;
+}
+.collapse-menu > ul > li > a{
+  background: #fff !important;
+  color: #333;
+  border-bottom: 1px solid #ebebeb;
+}

@@ -1,0 +1,79 @@
+<app-header></app-header>
+<div class="sign-conatiner input-container" data-aos="fade-up">
+	<h2 class="title">Create your Account</h2>
+	<form name="form" method="POST">
+		<div class="row">
+			<div class="col-sm-6  mt-10">
+				<small>Name<strong class="native-text">*</strong></small>
+				<input type="text" class="tf-herb.ng" placeholder="Full Name" name="name" required="true"
+					(keyup)="form.validate($event)" />
+			</div>
+			<div class="col-sm-6  mt-10">
+				<small>Email Address<strong class="native-text">*</strong></small>
+				<input type="email" class="tf-herb.ng" placeholder="Email Address" name="email" required="true"
+					(keyup)="form.validate($event)" />
+			</div>
+			<div class="col-sm-6  mt-10">
+				<small>Mobile Number<strong class="native-text">*</strong></small>
+				<input type="tel" class="tf-herb.ng" placeholder="Mobile Number" maxlength="14" name="mobile" required="true"
+					(keyup)="form.validate($event)" />
+			</div>
+			<div class="col-sm-6  mt-10">
+				<small>Gender<strong class="native-text">*</strong></small>
+				<select name="gender" class="tf-herb.ng" required="true" (change)="form.validate($event)">
+					<option value="" selected>Gender</option>
+					<option>Male</option>
+					<option>Female</option>
+				</select>
+			</div>
+			<div class="col-sm-6  mt-10" hidden="true">
+				<small>Country<strong class="native-text">*</strong></small>
+				<select name="country" class="tf-herb.ng" disabled="" aria-readonly="true" required="true"
+					(keyup)="form.validate($event)">
+					<option value="" disabled>-- Choose COuntry --</option>
+					<option value="nigeria">Nigeria</option>
+				</select>
+			</div>
+
+
+			<div class="col-sm-6  mt-10">
+				<small>Password<strong class="native-text">*</strong></small>
+				<input type="password" class="tf-herb.ng" placeholder="Password" name="password" required="true"
+					(keyup)="form.validate($event)" />
+			</div>
+			<div class="col-sm-6  mt-10">
+				<small>Confirm Password<strong class="native-text">*</strong></small>
+				<input type="password" class="tf-herb.ng" placeholder="Confirm Password" name="confirmPassword"
+					required="true" (keyup)="form.validate($event)" />
+			</div>
+			<div class="col-sm-6  mt-10">
+				<small>State<strong class="native-text">*</strong></small>
+				<select name="city" class="tf-herb.ng" required="true" (change)="form.validate($event)">
+					<option disabled value="" selected>-- Choose State --</option>
+					<option value="{{locs.code}}" *ngFor="let locs of locations">{{locs.description}}</option>
+
+				</select>
+			</div>
+			<div class="col-sm-6  mt-10">
+				<small>Home Address</small>
+				<textarea class="ta-herb.ng" placeholder="Address" name="address"></textarea>
+			</div>
+			<div class="form-group row  mt-10">
+				<div class="col-md-0 checkbox">
+					<input type="checkbox" class="checkbox" name="newsLetter">
+				</div>
+				<div class="col label">
+					I want to receive herb.ng Newsletters
+				</div>
+			</div>
+			<div class="col-md-12 mt-10">
+				<button type="button" class="btn btn-herb.ng fill" (click)="signUp()">Sign
+					Up</button>
+			</div>
+		</div>
+	</form>
+	<div class="footer">
+		Already have an Account? <a [routerLink]="[ '/login']">Login Now</a>
+	</div>
+</div>
+<app-footer></app-footer>

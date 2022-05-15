@@ -1,0 +1,46 @@
+<app-header-inner></app-header-inner>
+<div class="container">
+    <ng-container *ngIf="isShopsLoading">
+        <app-loader></app-loader>
+    </ng-container>
+    <ng-container *ngIf="!isShopsLoading">
+        <ng-container *ngIf="shops!=null">
+            <div class="section-title" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+                [infiniteScrollDisabled]="scrollCheck" [alwaysCallback]="true" (scrolled)="onScroll()">
+                <h3>Select shop</h3>
+                <a [routerLink]="['/market']" class="btn all-shops-btn">Products</a>
+
+            </div>
+            <br />
+            <div class="row five-catItems_mt-30">
+                <div class="col-md-2 shop-card" *ngFor="let shop of shops">
+                    <div class="single-product-cat widget card">
+                        <a [routerLink]="['/shop',shop.tag]"><img
+                                src="{{shop.logo!=null?'https://herb.ng.s3.amazonaws.com/pictures/'+shop.logo:'assets/images/nologo.png'}}"
+                                height="180" width="180" alt="" /></a>
+                        <h4><a [routerLink]="['/shop',shop.tag]">{{shop.name | excerpt :15}}</a></h4>
+                        <p>{{shop.city}}, Nigeria</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center mt-30">
+                <div class="col-lg-6">
+                    <div class="site-pagination">
+                        <ul>
+                            <li><a class="active">{{this.curentPage}}</a></li>
+                            <li>of</li>
+                            <li><a>{{(this.totalPages)-1}}</a></li>
+                            <li><a class="btn btn-herb.ng btn-slim" (click)="nextPage(this.curentPage);"><i
+                                        class="fa fa-long-arrow-right"></i> See More</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="shops==null">
+            <h3>No Shop Available</h3>
+        </ng-container>
+    </ng-container>
+</div>
+<app-footer></app-footer>

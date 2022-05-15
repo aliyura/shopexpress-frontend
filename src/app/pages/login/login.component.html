@@ -1,0 +1,61 @@
+<app-header></app-header>
+<div class="sign-conatiner input-container" data-aos="fade-up">
+  <h2 class="title">Logn in to your Account</h2>
+  <form name="form" method="POST">
+    <div class="row">
+      <div class="col-md-12 mt-10">
+
+        <div class="tf-herb.ng customized-input-wrapper">
+          <span class="icon-user input-icon"></span>
+          <input type="text" class="customized-input" placeholder="Email or Mobile Number"
+            [value]="userRequest.username!=undefined?userRequest.username:''" name="username" required="true"
+            (keyup)="form.validate($event)" />
+        </div>
+      </div>
+
+      <div class="col-md-12 mt-10">
+        <div class="tf-herb.ng customized-input-wrapper">
+          <span class="icon-lock input-icon"></span>
+          <input type="{{isVisible?'text':'password'}}" class="customized-input password-field" placeholder="Password" name="password" required="true"
+            (keyup)="form.validate($event)" />
+            <span *ngIf="!isVisible" class="icon-eye input-icon" (click)="viewPassword($event)"></span>
+            <span *ngIf="isVisible" class="icon-eye input-icon native-text" (click)="viewPassword($event)"></span>
+        </div>
+      </div>
+
+      <div class="form-group row  mt-30">
+        <div class="col-md-0 checkbox">
+          <input type="checkbox" class="checkbox" name="newslatter">
+        </div>
+        <div class="col label">
+          Kepp me In
+        </div>
+      </div>
+      <div class="col-md-12 mt-10">
+        <button type="button" class="btn btn-herb.ng fill" (click)="signIn()">Sign
+          In</button>
+      </div>
+    </div>
+  </form>
+  <div class="form" class="mt-4 mb-4">
+    <img src="assets/images/separator-pipe.png" class="img seperator">
+  </div>
+
+  <div class="row">
+    <div class="login-width-google col-md-6" (click)="signUpWithGoogle()">
+      <img src="assets/images/lg.png" class="img login-with-social-icon">
+    </div>
+    <div class="login-width-google col-md-6">
+      <img src="assets/images/lf.png" class="img login-with-social-icon" (click)="signInWithFB()">
+    </div>
+  </div>
+  <div class="footer row">
+    <div class="col-md-8 left mt-30">
+      Don't have an Account? <a [routerLink]="[ '/signup']">Register Now</a>
+    </div>
+    <div class="col-md-4 right mt-30">
+      <a [routerLink]="[ '/forgot-password']" class="dark-color'">Forgot Password?</a>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

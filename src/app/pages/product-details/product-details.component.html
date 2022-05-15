@@ -1,0 +1,474 @@
+<app-top></app-top>
+<!--product-details-area start-->
+<div class="product-details-area mt-20">
+  <div class="container">
+    <!--container-fluid-->
+    <div class="product-details">
+      <div class="row">
+        <div class="col-lg-3 col-md-4">
+          <div class="sidebar">
+            <div class="vertical-menu">
+              <ul>
+                <ng-container *ngFor="let item of categories">
+                  <ng-container *ngIf="item.subCategories!=null">
+                    <li><a [routerLink]="['/market',item.category.id]">
+                        <i *ngIf="item.category.icon!=null" class="{{item.category.icon}}"></i>{{item.category.name}}<b
+                          class="caret"></b>
+                      </a>
+                      <ul class="mega-menu">
+                        <li class="megamenu-single">
+                          <ul>
+                            <li *ngFor="let subCategory of item.subCategories"><a
+                                [routerLink]="['/market',subCategory.id]">{{subCategory.name}}</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ng-container>
+                  <ng-container *ngIf="item.subCategories==null">
+                    <li>
+                      <a [routerLink]="['/market',item.category.id]">
+                        <i *ngIf="item.category.icon!=null" class="{{item.category.icon}}"></i>{{item.category.name}}
+                      </a>
+                    </li>
+                  </ng-container>
+                </ng-container>
+              </ul>
+            </div>
+            <app-latest-items></app-latest-items>
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-8">
+          <ng-container *ngIf="isLoading">
+            <app-loader></app-loader>
+          </ng-container>
+          <ng-container *ngIf="product!=null">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="tab-content">
+                  <div id="productViewer" class="tab-pane fade in show active">
+                    <div class="product-details-thumb">
+                      <img class="product-veiw" (error)="setDefault($event)"
+                        src="https://herb.ng.s3.amazonaws.com/pictures/{{this.currentImage}}" alt="" />
+                    </div>
+                  </div>
+
+                </div>
+                <ul class="nav nav-tabs products-nav-tabs horizontal mt-10" *ngIf="product.images!=null">
+                  <li *ngFor="let image of product!.images!.split(',')">
+                    <a class="active" data-toggle="tab" href="#product-1">
+                      <img class="sub-product-veiw" (click)="switchView(image)" (error)="setDefault($event)"
+                        src="https://herb.ng.s3.amazonaws.com/pictures/{{image}}" alt="" /></a>
+                  </li>
+
+                </ul>
+
+              </div>
+
+              <div class="col-lg-6 mt-sm-30">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="product-action stuck text-left">
+                      <div class="free-delivery">
+                        <a><i class="ti-truck"></i> Nationwide Delivery</a>
+                      </div>
+                      <div class="product-price-rating">
+                        <h3>Information</h3>
+                        <ng-container *ngIf="product.price>0">
+                          <div>
+                            <del>&#8358;{{
+                              product.price>0?app.toMoney((product.price*100)/80):100}}</del>
+                          </div>
+                          <span class="price">&#8358;{{
+                            product.price>0?app.toMoney(product.price):'Free'}}</span>
+                        </ng-container>
+                        <ng-container *ngIf="product.price<=0">
+                          <span>Free</span>
+                        </ng-container>
+                        <div class="pull-righ">
+                          <app-rating-view class="product-rating" [rate]="product.ratings">
+                          </app-rating-view>
+                        </div>
+                        <ul class="list-none top-info-list">
+                          <li>
+                            Delivery in <span class="item">{{product.deliveryDays}}
+                              days</span>
+                          </li>
+                          <li>
+                            Category <span class="item">{{product.categoryName}}</span>
+                          </li>
+                          <li>
+                            Sub Category <span class="item">{{product.subCategoryName}}</span>
+                          </li>
+
+                        </ul>
+
+                      </div>
+                      <ng-container *ngIf="product.status=='AC'">
+                        <form #cartForm="ngForm" name="form" class="options-form">
+                          <section class="container mb-5">
+
+                            <div class="product-quantity mt-15 row" *ngIf="product.size=='yard'">
+                              <div class="col-6">
+                                <label>Select Yards:</label>
+                              </div>
+                              <div class="col-6">
+                                <input type="number" ngModel="1" class="form-control" name="yards" />
+                              </div>
+                            </div>
+                            <div class="product-quantity mt-15 row">
+                              <div class="col-6">
+                                <label>Select Quantity:</label>
+                              </div>
+                              <div class="col-6">
+                                <select class="tf-herb.ng quantity-field" name="quantity"
+                                  (change)="onQuantityChange($event)" ngModel="1">
+                                  <ng-container *ngFor="let item of app.arrayOf(maxOrderQuantity); let i=index">
+                                    <option *ngIf="i>0">{{i}}</option>
+                                  </ng-container>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="product-quantity mt-15 row" *ngIf="colors!=null">
+                              <hr />
+                              <div class="col-6">
+                                <label>Select Color:</label>
+                              </div>
+                              <div class="col-6">
+                                <button type="button" (click)="toggleColorsOptionDrawer()"
+                                  class="tf-herb.ng options-trigger"> {{
+                                  this.selectedColors.length>0?this.selectedColors.toString():'Any'}} <span
+                                    class="fa fa-chevron-down"></span></button>
+                                <div class="option-dropdown" id="colorsOptionDrawer">
+                                  <ng-container *ngFor="let color of colors">
+                                    <div (click)="selectColor($event)" class="btn-option">
+                                      <span class="fa fa-check" id="optionCheck" hidden="true"></span> {{color}}
+                                    </div>
+                                  </ng-container>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="product-quantity mt-15 row" *ngIf="sizes!=null">
+                              <hr />
+                              <div class="col-6">
+                                <label>Select Size:</label>
+                              </div>
+                              <div class="col-6">
+                                <button type="button" (click)="toggleSizesOptionDrawer()"
+                                  class="tf-herb.ng options-trigger">{{
+                                  this.selectedSizes.length>0?this.selectedSizes.toString():'Any'}} <span
+                                    class="fa fa-chevron-down"></span></button>
+                                <div class="option-dropdown" id="sizesOptionDrawer">
+                                  <ng-container *ngFor="let size of sizes">
+                                    <div (click)="selectSize($event)" class="btn-option">
+                                      <span class="fa fa-check" id="optionCheck" hidden="true"></span> {{size}}
+                                    </div>
+                                  </ng-container>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                          <div class="add-to-get mt-50 text-left" align="left">
+                            <a class="btn btn-success m-2  outline" (click)="addToCart(cartForm.value,product)">
+                              Add to
+                              cart</a>
+                            <a name="button" (click)="buy(cartForm.value,product)" class="btn native buy  m-2 p5">Buy
+                              Now</a>
+                          </div>
+                        </form>
+                      </ng-container>
+                      <ng-container *ngIf="product.status=='OS'">
+                        <div class="add-to-get mt-50" align="center">
+                          <button name="submit" class="btn btn-danger btn-block">Out of
+                            Stock</button>
+                        </div>
+                      </ng-container>
+
+                      <div class="product-features mt-50">
+                        <ul class="list-none">
+                          <li>Satisfaction 100% Guaranteed</li>
+                          <!-- <li>Free shipping on orders over $99</li> -->
+                          <li>30 day easy Return</li>
+                          <li><b>Share on</b>
+                            <div class="share">
+                              <div
+                                class="sharetsharehis-inline-share-buttons st-left  st-inline-share-buttons st-animated"
+                                id="st-1">
+                                <div class="st-btn st-first" data-network="facebook" style="display: inline-block;">
+                                  <a
+                                    href="https://www.facebook.com/sharer/sharer.php?u=https://herb.ng.com.ng/product/{{product.id}}">
+                                    <img alt="facebook sharing button"
+                                      src="https://platform-cdn.sharethis.com/img/facebook.svg">
+                                  </a>
+                                </div>
+                                <div class="st-btn" data-network="twitter" style="display: inline-block;">
+                                  <a
+                                    href="https://twitter.com/intent/tweet?url=https://herb.ng.com.ng/product/{{product.id}}&text=Buy {{product.name}} as NGN {{this.app.toMoney(this.product.price)}} on ShopExpress">
+                                    <img alt="twitter sharing button"
+                                      src="https://platform-cdn.sharethis.com/img/twitter.svg">
+                                  </a>
+                                </div>
+                                <div class="st-btn" data-network="pinterest" style="display: inline-block;">
+                                  <a
+                                    href="https://wa.me/?text=Buy {{product.name}} as NGN {{this.app.toMoney(this.product.price)}} on ShopExpress. Click https://herb.ng.com.ng/product/{{product.id}}">
+                                    <img alt="pinterest sharing button"
+                                      src="https://platform-cdn.sharethis.com/img/whatsapp.svg">
+                                  </a>
+
+                                </div>
+                                <div class="st-btn" data-network="email" style="display: inline-block;">
+                                  <a
+                                    href="https://www.linkedin.com/shareArticle?mini=true&url=https://herb.ng.com.ng/product/{{product.id}}">
+                                    <img alt="email sharing button"
+                                      src="https://platform-cdn.sharethis.com/img/linkedin.svg">
+                                  </a>
+
+                                </div>
+                                <div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
+                                  <img alt="sharethis sharing button"
+                                    src="https://platform-cdn.sharethis.com/img/instagram.svg">
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-40">
+              <div class="col-lg-12">
+                <ul class="nav nav-tabs product-review-nav">
+                  <li><a class="active" data-toggle="tab" href="#description">Description</a></li>
+                  <!-- <li><a data-toggle="tab" href="#specifications">Specifications</a></li> -->
+                  <li><a data-toggle="tab" href="#reviews">Reviews ({{reviewLength}})</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div id="description" class="tab-pane fade in show active">
+                    <div class="product-description">
+                      <h2>{{product.name}}</h2>
+                      <p>{{product.description}}</p>
+                    </div>
+                  </div>
+                  <div id="specifications" class="tab-pane fade specifications">
+                    <table class="table table-bordered">
+                      <tr>
+                        <td>Customer Rating</td>
+                        <td>
+                          <div class="product-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            <span>(05)</span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Price</td>
+                        <td><strong class="price">$495.00</strong></td>
+                      </tr>
+                      <tr>
+                        <td>RAM Size</td>
+                        <td>8 GB</td>
+                      </tr>
+                      <tr>
+                        <td>Screen Size</td>
+                        <td>13 in</td>
+                      </tr>
+                      <tr>
+                        <td>Display Technology</td>
+                        <td>LED</td>
+                      </tr>
+                      <tr>
+                        <td>Hard-Drive Size</td>
+                        <td>128 GB</td>
+                      </tr>
+                      <tr>
+                        <td>Operating System</td>
+                        <td>Mac OS X</td>
+                      </tr>
+                      <tr>
+                        <td>Wireless Compatibility</td>
+                        <td>802.11abg, 802.11 A/C, 802.11 a/b/g/n, 802.11A</td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div id="reviews" class="tab-pane fade">
+                    <div class="blog-comments product-comments mt-0">
+                      <ul class="list-none">
+                        <ng-container *ngIf="isReviewLoading">
+                          <app-loader></app-loader>
+                        </ng-container>
+                        <ng-container *ngIf="reviewList!=null && !isReviewLoading">
+                          <li *ngFor="let review of reviewList">
+                            <div class="comment-avatar text-center">
+                              <img src="assets/images/blog/comment/4.jpg" alt="" />
+                              <div class="product-rating mt-10">
+                                <app-rating-view [rate]="review.review.rate">
+                                </app-rating-view>
+                              </div>
+                            </div>
+                            <div class="comment-desc">
+                              <span>{{review.review.createdDate}}</span>
+                              <h4>{{review.user.name}}</h4>
+                              <p>{{(review.review.review)}}</p>
+                            </div>
+                          </li>
+                        </ng-container>
+                        <ng-container *ngIf="reviewList==null && !isReviewLoading">
+                          <div class="error-message">
+                            No Review Avaialble
+                          </div>
+                        </ng-container>
+
+
+                      </ul>
+                    </div>
+                    <form #reviewForm="ngForm" name="form" (ngSubmit)="addReview(reviewForm.value)">
+                      <div class="blog-comment-form product-comment-form mt-05">
+                        <h4><span>Add Review</span></h4>
+                        <div class="row mt-30">
+                          <ng-container *ngIf="!isAuthenticated">
+                            <div class="col-sm-6 single-form">
+                              <input type="text" name="name" placeholder="Name" ngModel />
+                            </div>
+                            <div class="col-sm-6">
+                              <input type="text" name="email" ngModel placeholder="Email" />
+                            </div>
+                          </ng-container>
+
+                          <div class="col-sm-12">
+                            <div class="product-rating style-2">
+                              <span>Choose Rating:</span>
+
+                              <span [ngSwitch]="reviewRate">
+                                <p *ngSwitchCase="1">
+                                  <i class="fa fa-star" (click)="getReviewRate(1)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(2)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(3)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(4)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(5)"></i>
+                                </p>
+                                <p *ngSwitchCase="2">
+                                  <i class="fa fa-star" (click)="getReviewRate(1)"></i>
+                                  <i class="fa fa-star" (click)="getReviewRate(2)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(3)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(4)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(5)"></i>
+                                </p>
+                                <p *ngSwitchCase="3">
+                                  <i class="fa fa-star" (click)="getReviewRate(1)"></i>
+                                  <i class="fa fa-star" (click)="getReviewRate(2)"></i>
+                                  <i class="fa fa-star" (click)="getReviewRate(3)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(4)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(5)"></i>
+                                </p>
+                                <p *ngSwitchCase="4">
+                                  <i class="fa fa-star" (click)="getReviewRate(1)"></i>
+                                  <i class="fa fa-star" (click)="getReviewRate(2)"></i>
+                                  <i class="fa fa-star" (click)="getReviewRate(3)"></i>
+                                  <i class="fa fa-star" (click)="getReviewRate(4)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(5)"></i>
+                                </p>
+                                <p *ngSwitchCase="5">
+                                  <i class="fa fa-star" (click)="getReviewRate(1)"></i>
+                                  <i class="fa fa-star" (click)="getReviewRate(2)"></i>
+                                  <i class="fa fa-star" (click)="getReviewRate(3)"></i>
+                                  <i class="fa fa-star" (click)="getReviewRate(4)"></i>
+                                  <i class="fa fa-star" (click)="getReviewRate(5)"></i>
+                                </p>
+                                <p *ngSwitchDefault>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(1)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(2)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(3)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(4)"></i>
+                                  <i class="fa fa-star-o" (click)="getReviewRate(5)"></i>
+                                </p>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="col-sm-12">
+                            <textarea name="review" ngModel class="tf-herb.ng" required="true"
+                              placeholder="Type your Comment..."></textarea>
+                          </div>
+                          <div class="col-sm-12">
+                            <button name="submit" class="btn-common mt-25">Submit</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="product==null && !isLoading">
+            <div class="error-message">
+              Product not Found
+            </div>
+          </ng-container>
+
+        </div>
+      </div>
+    </div>
+
+    <!--products-area start-->
+    <ng-container *ngIf="isLatestLoading">
+      <app-loader></app-loader>
+    </ng-container>
+    <ng-container *ngIf="relatedProductItems!=null">
+      <div class="best-sellers mt-45">
+        <div class="container-fluid fix">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="section-title">
+                <h3>Related Products</h3>
+              </div>
+            </div>
+          </div>
+          <div class="row products-three_cv-visible">
+            <div class="col-md-3 col-lg-3 product-card" *ngFor="let product of relatedProductItems">
+              <!--single-product-->
+              <div class="product-single">
+                <div class="product-title">
+                  <small><a [routerLink]="['/market',product.categoryId]">{{product.categoryName}}</a></small>
+                  <h4><a [routerLink]="['/product',product.id]">{{product.name |
+                      excerpt:51}}</a></h4>
+                </div>
+                <div class="product-thumb">
+                  <a [routerLink]="['/product',product.id]"><img class="img img-responsive product-image"
+                      (error)="setDefault($event)" src="https://herb.ng.s3.amazonaws.com/pictures/{{product.thumbnail}}"
+                      alt="" /></a>
+                  <div class="downsale" *ngIf="product.status=='AC'">
+                    <span>-</span>{{product.price>0?percentage:100}}%
+                  </div>
+                  <div class="downsale" *ngIf="product.status=='OS'">Out of Stock</div>
+                </div>
+                <div class="product-price-rating" *ngIf="product.price>0">
+                  <span>&#8358;{{app.toMoney(product.price)}}</span>
+                  <del>&#8358;{{app.toMoney((product.price*100)/80)}}</del>
+                </div>
+                <div class="product-price-rating" *ngIf="product.price<=0">
+                  <span>Free</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="relatedProductItems==null && !isLatestLoading">
+      <div class="error-message">
+        No Product Avaialble
+      </div>
+    </ng-container>
+
+  </div>
+</div>
+<app-footer></app-footer>

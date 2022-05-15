@@ -1,0 +1,63 @@
+<div class="recent-viewed-products mt-40"  *ngIf="recentItems!=null && !isLoading">
+<div class="row mb-2">
+    <div class="col-lg-12">
+        <div class="section-title">
+            <h3>Recently Viewed Products</h3>
+        </div>
+    </div>
+</div>
+    <div class="container">
+        <ng-container *ngIf="isLoading">
+            <app-loader></app-loader>
+        </ng-container>
+        <ng-container *ngIf="recentItems!=null && !isLoading">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="row recent-products_mlr-minus-12 yscrollable"
+                         infiniteScroll
+						[infiniteScrollDistance]="2"
+						[infiniteScrollThrottle]="50"
+						[infiniteScrollDisabled]="scrollCheck"
+						[alwaysCallback]="true">
+                        <div class="col-lg-4 product-card" *ngFor="let item of recentItems">
+                            <!--single-product-->
+                            <div class="product-single style-2">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 p-0">
+                                        <div class="product-thumb">
+                                            <a [routerLink]="['/product',item.id]"><img class="product-image"
+                                                    (error)="setDefault($event)"
+                                                    src="https://herb.ng.s3.amazonaws.com/pictures/{{item.thumbnail}}"
+                                                    alt="" /></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-0">
+                                        <div class="product-title">
+                                            <small><a [routerLink]="['/market',item.id]">{{item.categoryName}}</a></small>
+                                            <h4><a [routerLink]="['/product', item.id]">{{item.name | excerpt:31}}</a></h4>
+                                        </div>
+                                        <div class="product-price-rating">
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                        <div class="product-price-rating" *ngIf="item.price>0">
+                                            <span>&#8358;{{app.toMoney(item.price)}}</span>
+                                            <del>{{app.toMoney((item.price*100)/80)}}</del>
+                                        </div>
+                                        <div class="product-price-rating" *ngIf="item.price<=0">
+                                            <span>Free</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

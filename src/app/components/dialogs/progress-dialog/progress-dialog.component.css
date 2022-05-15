@@ -1,0 +1,31 @@
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: rgba(20, 20, 20, 0.048);
+  z-index: 10000;
+}
+.progress-container {
+  width: 150px;
+  padding: 20px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  background: #fff;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000000;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.21);
+  -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.21);
+  -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.21);
+  -o-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.21);
+}
+.progress-gif {
+  width: 100%;
+}

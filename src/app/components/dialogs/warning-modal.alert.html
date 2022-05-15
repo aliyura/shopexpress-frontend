@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>
+  <img src="/assets/img/warning.png" class="icon">{{title}}
+  <span class="material-icons close-icon" (click)="closeDialog()">
+    cancel_presentation
+    </span>
+</h1>
+<div mat-dialog-content>{{body}}</div>
+<hr>
+<div mat-dialog-actions>
+  <button class="btn btn-sidekiq" mat-raised-button mat-dialog-close (click)="closeDialog()">Close</button>
+</div>

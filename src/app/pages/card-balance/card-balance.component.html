@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div class="sign-conatiner input-container" data-aos="fade-up" *ngIf="authorized">
+	<h2 class="title">Check You Card Balance</h2>
+	<div class="container" *ngIf="cardBalance!=null">
+        <div><b>Your Balance Is:</b> {{cardBalance}}</div>
+        <div><b>Rate Is:</b> {{cardRate}}</div>
+        <div><b>Spent:</b> {{cardSpent}}</div>
+    </div>
+	<form #cardActivation="ngForm" (ngSubmit)="myCardBalance(cardActivation.value)">
+		<div class="row">
+			<div class="col-md-12 mt-10">
+				<input type="text"  ngModel class="tf-herb.ng"placeholder="Card Serial Number" name="serial" required="true" />
+			</div>
+			<div class="col-md-12 mt-10">
+				<input type="password" ngModel class="tf-herb.ng"placeholder="Your Pin" name="pin" required="true" />
+			</div>
+				<div class="col-md-12 mt-10">
+
+				<button class="btn btn-herb.ng fill">Activate</button>
+			</div>
+
+		</div>
+	</form>
+
+</div>
+<app-footer></app-footer>

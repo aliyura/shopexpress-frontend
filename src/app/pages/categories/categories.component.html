@@ -1,0 +1,29 @@
+<app-header-inner></app-header-inner>
+<div class="container">
+    <ng-container *ngIf="isLoading">
+        <app-loader></app-loader>
+    </ng-container>
+    <ng-container *ngIf="!isLoading">
+        <ng-container *ngIf="categories!=null">
+            <div class="section-title">
+                <h3>Product Categories</h3>
+            </div>
+            <br/>
+            <div class="row five-catItems_mt-30">
+                <div class="col-lg-3 col-sm-3 product-card category-card" *ngFor="let cat of categories">
+                    <div class="single-product-cat">
+                        <a [routerLink]="['/market',cat.category.id]"><img
+                                src="https://herb.ng.s3.amazonaws.com/pictures/{{cat.category.image}}" height="180" width="180"
+                                alt="" /></a>
+                        <h4><a [routerLink]="['/market',cat.category.id]">{{cat.category.name}}</a></h4>
+                    </div>
+                </div>
+            </div>
+
+        </ng-container>
+        <ng-container *ngIf="categories==null">
+            <h3>No Category Available</h3>
+        </ng-container>
+    </ng-container>
+</div>
+<app-footer></app-footer>

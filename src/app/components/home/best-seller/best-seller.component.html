@@ -1,0 +1,70 @@
+<div class="row mt-5" *ngIf="this.categories!=null">
+    <div class="col-lg-4 pr-0">
+        <div class="section-title">
+            <h3>Top Categories</h3>
+        </div>
+    </div>
+    <div class="col-lg-8 pl-0">
+        <div class="product-nav-tabs style-3">
+            <ul class="nav nav-tabs text-right category-list">
+                <li *ngFor="let categoryData of this.categories">
+                    <a (click)="loadItems(categoryData!.category,$event)"
+                        data-toggle="tab">{{categoryData!.category!.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="recent-viewed-products mt-40">
+    <div class="container">
+        <ng-container *ngIf="isLoading">
+            <app-loader></app-loader>
+        </ng-container>
+        <ng-container *ngIf="productList!=null && !isLoading">
+            <div class="row">
+                <div class="row recent-products_mlr-minus-12 yscrollable">
+                    <div class="col-lg-4 product-card" *ngFor="let item of productList">
+                        <!--single-product-->
+                        <div class="product-single style-2">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 p-0">
+                                    <div class="product-thumb">
+                                        <a [routerLink]="['/product',item.id]"><img class="product-image"
+                                                (error)="setDefault($event)"
+                                                src="https://herb.ng.s3.amazonaws.com/pictures/{{item.thumbnail}}"
+                                                alt="" /></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 p-0">
+                                    <div class="product-title">
+                                        <small><a [routerLink]="['/market',item.id]">{{item.categoryName}}</a></small>
+                                        <h4><a [routerLink]="['/product', item.id]">{{item.name | excerpt:41}}</a></h4>
+                                    </div>
+                                    <div class="product-price-rating">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <div class="product-price-rating" *ngIf="item.price>0">
+                                        <span>&#8358;{{app.toMoney(item.price)}}</span>
+                                        <del>{{app.toMoney((item.price*100)/80)}}</del>
+                                    </div>
+                                    <div class="product-price-rating" *ngIf="item.price<=0">
+                                        <span>Free</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="productList==null && !isLoading">
+                <div class="error-message">
+                    No  {{this.currentCategory.name}} Available Now
+                </div>
+        </ng-container>
+    </div>
+</div>

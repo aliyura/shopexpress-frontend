@@ -1,0 +1,8 @@
+@media(max-width:600px){
+    .cart-product-thumb img{
+    height: 60px !important;
+    padding: 2px;
+    -webkit-box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.18);
+    }
+}

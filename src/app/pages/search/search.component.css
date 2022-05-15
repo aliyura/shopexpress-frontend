@@ -1,0 +1,19 @@
+.input-container{
+  width: 50%;
+}
+@media(max-width:600px){
+     .sidebar{
+        display: none;
+    }
+    .search-products .product-thumb{
+        height: 300px;
+    }
+    .input-container{
+      width: 100%;
+    }
+}
+@media(max-width:320px){
+    .search-products .product-thumb{
+        height: 200px;
+    }
+}

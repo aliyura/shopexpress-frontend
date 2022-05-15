@@ -1,0 +1,169 @@
+<div class="modal fade" id="quick-view" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row" *ngIf="product!=null">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="tab-content">
+                <div id="product-1" class="tab-pane fade in show active">
+                  <div class="product-details-thumb">
+                    <img class="product-view" (error)="setDefault($event)"
+                      src="https://herb.ng.s3.amazonaws.com/pictures/{{product.thumbnail}}" alt="" />
+                  </div>
+                </div>
+              </div>
+              <ul class="nav nav-tabs products-nav-tabs horizontal quick-view mt-10">
+                <li *ngFor="let image of product.images.split(',')">
+                  <a *ngIf="image!=null" class="active" data-toggle="tab" href="#product-1">
+                    <img class="sub-product-veiw" (click)="switchView(image)" (error)="setDefault($event)"
+                      src="https://herb.ng.s3.amazonaws.com/pictures/{{image}}" alt="" /></a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-8">
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="product-details-desc">
+                    <h2>{{product.name}}</h2>
+                    <ul>
+                      {{product.description}}
+                    </ul>
+                    <div class="product-meta">
+                      <ul class="list-none">
+                        <li>SKU: 00012 <span>|</span></li>
+                        <li>Categories:
+                          <a href="/market/{{product.categoryId}}">{{product.categoryName}}</a>
+                          <span>|</span>
+                        </li>
+                        <li>Tags:
+                          <!-- <a href="#">Tech,</a>
+                                                    <a href="#">Apple</a> -->
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="social-icons style-5">
+                      <span>Share Link:</span>
+                      <a href="#"><i class="fa fa-facebook"></i></a>
+                      <a href="#"><i class="fa fa-twitter"></i></a>
+                      <a href="#"><i class="fa fa-google-plus"></i></a>
+                      <a href="#"><i class="fa fa-rss"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="product-action stuck text-left">
+                    <div class="free-delivery">
+                      <a><i class="ti-truck"></i> </a>
+                    </div>
+                    <div class="product-price-rating">
+                      <ng-container *ngIf="product.price>0">
+                        <div>
+                          <del>&#8358;{{app.toMoney((product.price*100)/80)}}</del>
+                        </div>
+                        <span>&#8358;{{app.toMoney(product.price)}}</span>
+                      </ng-container>
+                      <ng-container *ngIf="product.price<=0">
+                        <span>Free</span>
+                      </ng-container>
+
+                      <div class="pull-right">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                      </div>
+                    </div>
+                    <ng-container *ngIf="product.status=='AC'">
+                      <form #cartForm="ngForm" name="form" class="options-form">
+                        <section class="container mb-5">
+                          <div class="product-quantity mt-15 row" *ngIf="product.size=='yard'">
+                            <div class="col-6">
+                              <label>Select <br/>Yards:</label>
+                            </div>
+                            <div class="col-6">
+                              <input type="number" ngModel="1" class="form-control" name="yards" />
+                            </div>
+                          </div>
+                          <div class="product-quantity mt-15 row">
+                            <div class="col-6">
+                              <label>Select <br/>Quantity:</label>
+                            </div>
+                            <div class="col-6">
+                              <select class="tf-herb.ng quantity-field" name="quantity"
+                                (change)="onQuantityChange($event)" ngModel="1">
+                                <ng-container *ngFor="let item of app.arrayOf(maxOrderQuantity); let i=index">
+                                  <option *ngIf="i>0">{{i}}</option>
+                                </ng-container>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="product-quantity mt-15 row" *ngIf="colors!=null">
+                            <hr />
+                            <div class="col-6">
+                              <label>Select <br/>Color:</label>
+                            </div>
+                            <div class="col-6">
+                              <button type="button" (click)="toggleColorsOptionDrawer()" class="tf-herb.ng options-trigger"> {{
+                                this.selectedColors.length>0?this.selectedColors.toString():'Any'}} <span
+                                  class="fa fa-chevron-down"></span></button>
+                              <div class="option-dropdown" id="colorsOptionDrawer">
+                                <ng-container *ngFor="let color of colors">
+                                  <div (click)="selectColor($event)" class="btn-option">
+                                    <span class="fa fa-check" id="optionCheck" hidden="true"></span> {{color}}
+                                  </div>
+                                </ng-container>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="product-quantity mt-15 row" *ngIf="sizes!=null">
+                            <hr />
+                            <div class="col-6">
+                              <label>Select <br/>Size:</label>
+                            </div>
+                            <div class="col-6">
+                              <button type="button"  (click)="toggleSizesOptionDrawer()" class="tf-herb.ng options-trigger">{{
+                                this.selectedSizes.length>0?this.selectedSizes.toString():'Any'}} <span
+                                  class="fa fa-chevron-down"></span></button>
+                              <div class="option-dropdown" id="sizesOptionDrawer">
+                                <ng-container *ngFor="let size of sizes">
+                                  <div (click)="selectSize($event)" class="btn-option">
+                                    <span class="fa fa-check" id="optionCheck" hidden="true"></span> {{size}}
+                                  </div>
+                                </ng-container>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                        <div class="add-to-get mt-50 text-left" align="left">
+                          <a class="btn btn-success m-2  outline" (click)="addToCart(cartForm.value,product)">
+                             Add to
+                            cart</a>
+                          <a name="button" (click)="buy(cartForm.value,product)" class="btn native buy  m-2 p5">Buy
+                            Now</a>
+                        </div>
+                      </form>
+                    </ng-container>
+                    <ng-container *ngIf="product.status=='OS'">
+                      <div class="add-to-get mt-50" align="center">
+                        <button name="submit" class="btn btn-danger btn-block">Out of
+                          Stock</button>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

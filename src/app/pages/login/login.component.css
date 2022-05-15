@@ -1,0 +1,62 @@
+.login-width-google {
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: 1em;
+}
+.seperator {
+  width: 100%;
+}
+.customized-input {
+  width: 95%;
+  border: none;
+  margin-left: 1em;
+  font-size: 16px;
+  outline: none;
+  border-left: 2px solid #d6d6d6;
+  padding-left: 10px;
+}
+
+.customized-input.password-field {
+  width: 90%;
+}
+
+@media (max-width: 1024px) {
+  .sign-conatiner {
+    margin-left: auto;
+  }
+  .customized-input {
+    width: 95%;
+  }
+  .customized-input.password-field {
+    width: 90%;
+  }
+}
+@media (max-width: 768px) {
+  .customized-input {
+    width: 90%;
+  }
+  .customized-input.password-field {
+    width: 85%;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-width-google:last-child{
+     display: none;
+  }
+  .customized-input {
+    width: 77%;
+  }
+  .customized-input.password-field {
+    width: 81%;
+  }
+}
+
+@media (max-width: 320px) {
+  .customized-input {
+    width: 77%;
+  }
+  .customized-input.password-field {
+    width: 75%;
+  }
+}

@@ -1,0 +1,16 @@
+<ng-container *ngIf="isPinging">
+  <section class="loader">
+    <img src="assets/images/app-loader-circle.gif" class="img" />
+  </section>
+</ng-container>
+<ng-container *ngIf="isUp && !isPinging">
+  <!-- <div class="left side-bar desktop"></div>
+  <div class="right side-bar desktop"></div> -->
+  <router-outlet></router-outlet>
+</ng-container>
+<ng-container *ngIf="!isUp && !isPinging">
+  <section class="erorr">
+    <img src="assets/images/connectionFailed.gif">
+    <p><a href="/" type="button" class="btn btn-herb.ng">Try Again</a></p>
+  </section>
+</ng-container>

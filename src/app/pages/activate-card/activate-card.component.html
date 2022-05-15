@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div class="sign-conatiner input-container" data-aos="fade-up" *ngIf="authorized">
+	<h2 class="title">Activate Your Voucher</h2>
+	<form autocomplete="off" #cardActivation="ngForm" (ngSubmit)="activateCard(cardActivation.value)">
+		<div class="row">
+			<div class="col-md-12 mt-10">
+				<input type="text"  autocomplete="false" ngModel class="tf-herb.ng"placeholder="Card Serial Number" name="serial" required="true" />
+			</div>
+			<div class="col-md-12 mt-10">
+				<input type="password" autocomplete="false" ngModel  class="tf-herb.ng"placeholder="New Pin" name="pin" required="true" />
+			</div>
+				<div class="col-md-12 mt-10">
+                <br>
+				<button class="btn btn-herb.ng fill">Activate</button>
+			</div>
+
+		</div>
+	</form>
+
+</div>
+<app-footer></app-footer>

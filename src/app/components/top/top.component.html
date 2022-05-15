@@ -1,0 +1,238 @@
+<header class="header-area">
+  <div class="desktop-header">
+    <!--header-top-->
+    <div class="header-top">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="topbar-left">
+              <ul class="list-none">
+                <li>SHOP & SAVE UP TO <span>65% OFF!</span></li>
+                <li>Call Us: <span>+2347062029832, +2349030502606</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="topbar-right">
+              <div class="register-login style-2 pull-right">
+                <ng-container *ngIf="authenticated; else logElse">
+                  <div class="social-icons style-3 pull-right" style="padding: 5px;">
+                    <a [routerLink]="['/profile']"><i class="icon-user"
+                        style="font-size:22px; padding: 5px"></i>
+                      <label>{{authenticatedUser.name}}</label></a>
+                    <a (click)="logOut()"><i class="icon-logout"
+                        style="font-size:22px; padding: 5px"></i> <label>Logout</label></a>
+                  </div>
+                </ng-container>
+                <ng-template #logElse>
+                  <a [routerLink]="['/signup']">Register</a>
+                  <span>/</span>
+                  <a (click)="login()">Sign in</a>
+                </ng-template>
+
+              </div>
+              <div class="currency-bar lang-bar pull-right">
+                <ul>
+                  <li><a><img src="assets/images/icons/gb.png" alt="" />English <i class="fa fa-angle-down"></i></a>
+                    <ul>
+                      <li><a>French</a></li>
+                      <li><a>Hausa</a></li>
+                    </ul>
+                  </li>
+                  <li><span class="br">|</span></li>
+                  <li><a [routerLink]="['/about']">Wanted to know about us?</a>
+
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--header-bottom-->
+    <div class="header-bottom">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-3">
+            <div class="logo">
+             <a [routerLink]="['/']"><img src="assets/images/logoBlack.png" width="130px" alt="logo" /></a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="search-box style-2">
+              <select>
+                <option selected>All Catgeory</option>
+                <option *ngFor="let item of categories" value="{{item.category.id}}">
+                  {{item.category.name}}</option>
+              </select>
+              <input #searchVal ngModel="{{searchQuery}}" type="text" [value]="searchQuery" class="searchInput"
+                placeholder="What do you need?" />
+              <button (click)="search(searchVal)">Search</button>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="mini-cart pull-right">
+              <div class="chat-with-us-container">
+                <a href="https://wa.me/message/O7B4ZAZO7E7EF1">
+                  <span>Chat Us</span> <img src="assets/images/chat.png">
+                </a>
+              </div>
+              <ul>
+                <li><a [routerLink]="['/cart']" class="minicart-icon">
+                    <i class="ti-heart"></i>
+                    <span>0</span></a>
+                </li>
+                <li><a [routerLink]="['/cart']" class="minicart-icon"><i class="icon_bag_alt"></i>₦
+                    {{app.toMoney(cartTotalPrice!=0?cartTotalPrice:'0.00')}}<span>{{app.toMoney(cartTotal)
+                      }}</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--mobile-header-->
+  <div class="top-header native">
+    <div class="align-items-center">
+      <div class="logo-wrapper">
+        <div class="logo">
+          <a [routerLink]="['/']"><img src="assets/images/logoWhite.png" class="header-logo" alt="logo" /></a>
+        </div>
+      </div>
+      <div class="action-menu">
+        <div class="mini-cart text-right">
+          <ul>
+            <li><a style="color:#fff" class="chat-with-us-link" href="https://wa.me/message/O7B4ZAZO7E7EF1">
+                <p class="chat-text">Chat Us<img src="assets/images/chat.png"></p>
+              </a></li>
+            <li><a [routerLink]="['/market']"><i class="icon_heart_alt"></i><span>0</span></a></li>
+            <li class="minicart-icon"><a [routerLink]="['/cart']">
+                <i class="icon_bag_alt"></i>
+                <span>{{app.toMoney(cartTotal)}}</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-header">
+    <!--search-box-->
+    <div class="row align-items-center search-box-wrapper">
+      <div class="col-sm-12">
+        <div class="search-box mt-sm-15">
+          <select>
+            <option selected>All Catgeory</option>
+            <option *ngFor="let item of categories" value="{{item.category.id}}">
+              {{item.category.name}}</option>
+          </select>
+          <input #searchVal1 ngModel="{{searchQuery}}" type="text" [value]="searchQuery" class="searchInput"
+            placeholder="What do you need?" />
+          <button (click)="search(searchVal1)">Search</button>
+        </div>
+      </div>
+    </div>
+    <!--site-menu-->
+    <div class="row mt-sm-15">
+      <div class="col-lg-12">
+        <a (click)="toggleDrawer()" class="mmenu-icon pull-left"><i class="fa fa-bars"></i></a>
+        <div class="logged-username" *ngIf="this.authenticated">
+          &nbsp;&nbsp;Hello {{ getShortName(authenticatedUser!.name) | titlecase}}!
+        </div>
+
+        <div class="logged-username" *ngIf="!this.authenticated">
+          <a class="link" href="/signup">Register</a>
+          <a class="link" (click)="login()">Login</a>
+        </div>
+        <div class="overlay herb.ng-overlay" *ngIf="isOpen" (click)="toggleDrawer()">
+          <div class="drawer" (click)="toggleDrawer()">
+            <div class="header" *ngIf="authenticated">
+              <img src="assets/images/avatar.png" class="img avatar">
+              <p class="title">{{authenticatedUser!.name}}</p>
+              <p class="subtitle"> <i class="fa fa-phone"></i>{{authenticatedUser.mobile}} </p>
+            </div>
+            <nav class="drawer-body">
+              <ul>
+                <li><a [routerLink]="['/']"> <i class="icon-home"></i>Home</a></li>
+                <ng-container *ngIf="authenticated">
+                  <li><a [routerLink]="['/cart']"><i class="icon-basket-loaded"></i>My Cart</a>
+                  </li>
+                  <li><a [routerLink]="['/orders']"><i class="icon-briefcase"></i>My Orders</a>
+                  </li>
+                </ng-container>
+                <li><a [routerLink]="['/categories']"><i class="icon-directions"></i>Categories</a></li>
+                <li><a [routerLink]="['/shops']"><i class="icon-layers"></i>View Shops</a></li>
+                <li><a [routerLink]="['/market']"><i class="icon-grid"></i>Products</a></li>
+                <li><a [routerLink]="['/about']"><i class="icon-exclamation"></i>About Us</a></li>
+                <li><a [routerLink]="['/contact']"><i class="icon-speech"></i>Contact Us</a></li>
+                <ng-container *ngIf="authenticated">
+
+                  <li><a [routerLink]="['/lvc/card/activation']">
+                    <i class="icon-credit-card"></i>Activate
+                      Card</a>
+                  </li>
+                  <li><a [routerLink]="['/lvc/card/balance-inquiry']">
+                    <i class="icon-wallet"></i>Balance
+                      Inquiry</a>
+                  </li>
+                </ng-container>
+              </ul>
+            </nav>
+            <nav class="drawer-footer">
+              <ng-container *ngIf="authenticated; else logElse">
+                <li><a [routerLink]="['/profile']"><i class="icon-user"></i>My Account</a></li>
+                <li><a  (click)="logOut()"><i class="icon-logout"></i>Logout</a></li>
+              </ng-container>
+              <ng-template #logElse>
+                <li> <a [routerLink]="['/signup']"><i class="icon-user-follow"></i>Register</a></li>
+                <li> <a (click)="login()"><i class="icon-logout"></i>Login</a></li>
+              </ng-template>
+            </nav>
+          </div>
+        </div>
+        <!--category-->
+        <div class="collapse-menu mt-0 pull-right ">
+          <ul>
+            <li>
+              <a href="javascript:void(0);" (click)="gotoCategories()" class="vm-menu">
+                <i class="fa fa-navicon"></i><span>All
+                  Categories</span></a>
+              <ul class="vm-dropdown">
+                <ng-container *ngFor="let item of categories">
+                  <ng-container *ngIf="item.subCategories!=null">
+                    <li><a [routerLink]="['/market',item.category.id]">
+                        <img *ngIf="item.category.icon!=null"
+                          src="assets/images/category/{{item.category.icon!=null?item.category.icon:'assets/images/category/default.jpg'}}"
+                          class="category-image-icon">{{item.category.name}}<b class="caret"></b>
+                      </a>
+                      <ul class="mega-menu">
+                        <li class="megamenu-single">
+                          <ul>
+                            <li *ngFor="let subCategory of item.subCategories"><a
+                                [routerLink]="['/market/{{subCategory.categoryId}}/',subCategory.id]">{{subCategory.name}}</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ng-container>
+                  <ng-container *ngIf="item.subCategories==null">
+                    <li>
+                      <a [routerLink]="['/market',item.category.id]">
+                        <img *ngIf="item.category.icon!=null"
+                          src="assets/images/category/{{item.category.icon!=null?item.category.icon:'assets/images/category/default.jpg'}}"
+                          class="category-image-icon">{{item.category.name}}
+                      </a>
+                    </li>
+                  </ng-container>
+                </ng-container>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

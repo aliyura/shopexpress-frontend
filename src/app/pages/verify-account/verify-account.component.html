@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="sign-conatiner input-container" data-aos="fade-up">
+    <h2 class="title">Verify your Account</h2>
+    <p>We have sent an OTP to <strong>{{user.mobile}}</strong>, enter the OTP below</p>
+    <form name="form" method="POST">
+        <div class="row">
+            <div class="col-md-12 mt-30">
+                <input type="text" class="tf-herb.ng disabled"[value]="user.mobile!=undefined?user.mobile:''"  placeholder="Email or Mobile Number"
+                    name="username" required="true" readonly="true" disabled="true" (keyup)="form.validate($event)" />
+            </div>
+            <div class="col-md-12 mt-30">
+                <input type="number" class="tf-herb.ng" maxlength="6" placeholder="Enter OTP" name="otp" required="true"
+                    (keyup)="form.validate($event)" />
+            </div>
+        </div>
+        <div class="fill mt-30">
+            <button type="button" class="btn btn-herb.ng fill" (click)="verifyAccount()">Verify Account</button>
+        </div>
+    </form>
+
+    <div class="footer">
+        <div class="resend mt-30">
+            Not receve yet? <strong><a (click)="resendOTP()">Resend</a></strong>
+        </div>
+        <div class="row">
+            <div class="col-md-12 left mt-30">
+                Remember Password? <a [routerLink]="[ '/login']">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

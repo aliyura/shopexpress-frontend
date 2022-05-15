@@ -1,0 +1,77 @@
+<app-header-inner></app-header-inner>
+<!--product-details-area start-->
+<div class="product-details-area mt-20">
+    <div class="container">
+        <!--container-fluid-->
+        <div class="product-details">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <div class="sidebar">
+                        <app-latest-items></app-latest-items>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8">
+                    <div class="tab-content">
+                        <div class="section-title">
+                            <h3>My Orders</h3>
+                        </div>
+                        <ng-container *ngIf="isLoading">
+                            <app-loader></app-loader>
+                        </ng-container>
+                        <ng-container *ngIf="orders!=null">
+                            <div class="tables table-responsive">
+                                <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+                                    <ng-container *ngIf="orders!=null">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Transaction Id</th>
+                                                    <th>Payment</th>
+                                                    <th>Option</th>
+                                                    <th>Amount</th>
+                                                    <th>Date</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let order of orders"
+                                                    [routerLink]="['/order/details',order!.id]">
+                                                    <th scope="row">{{order!.id}}</th>
+                                                    <td>{{order!.transactionId}}</td>
+                                                    <td>{{order!.paymentReferenceId!=null?order!.paymentReferenceId:'Not
+                                                        Paid'}}
+                                                    </td>
+                                                    <td>{{app.decodeOption(order!.paymentOption)}}</td>
+                                                    <td>&#8358;{{app.toMoney(order!.totalAmount)}}</td>
+                                                    <td>{{order!.createdDate}}</td>
+                                                    <td class="{{order.status}}">
+                                                        <span >
+                                                            {{app.decodeStatus(order!.status)}}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </ng-container>
+                                    <ng-container *ngIf="orders==null">
+                                        <div class="errorWrapper">
+                                            No Order Available
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="orders==null && !isLoading">
+                            <div class="error-message">
+                                You have not make any Order yet.
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

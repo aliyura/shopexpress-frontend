@@ -1,0 +1,136 @@
+<app-header-inner></app-header-inner>
+<div class="container mb-4 profile-wrapper">
+    <div class="row">
+        <div class="col-lg-4 pb-5">
+            <!-- Account Sidebar-->
+            <div class="author-card pb-3">
+                <div class="author-card-cover" style="background-color: #dddddd;"><a
+                        class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title=""
+                        data-original-title="You currently have 290 Reward points to spend"><i
+                            class="fa fa-award text-md"></i>&nbsp;ShopExpress</a></div>
+                <div class="author-card-profile">
+                    <div class="author-card-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                            alt="Daniel Adams">
+                    </div>
+                    <div class="author-card-details">
+                        <h5 class="author-card-name text-lg">{{userInfo.name}}</h5><span
+                            class="author-card-position">{{userInfo.email}}</span>
+                    </div>
+                </div>
+                <div class="container" style="padding: 10px;">
+                    <div class="author-card-details">
+                        <h5 class="author-card-name text-lg">Phone:</h5><span
+                            class="author-card-position">{{userInfo.mobile}}</span>
+                    </div>
+                    <div class="author-card-details">
+                        <h5 class="author-card-name text-lg">Address:</h5><span
+                            class="author-card-position">{{userInfo.address}}</span>
+                    </div>
+                    <div class="author-card-details">
+                        <h5 class="author-card-name text-lg">Account Role:</h5><span
+                            class="author-card-position">{{userInfo.role}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    <a class="list-group-item" [routerLink]="['/update-profile']"><i
+                            class="fa fa-user text-muted"></i>Profile
+                        Settings</a>
+                    <a class="list-group-item" [routerLink]="['/cart']">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><i class="fa fa-shopping-cart mr-1 text-muted"></i>
+                                <div class="d-inline-block font-weight-medium text-uppercase">My Carts</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="list-group-item" [routerLink]="['/orders']">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><i class="fa fa-shopping-bag mr-1 text-muted"></i>
+                                <div class="d-inline-block font-weight-medium text-uppercase">My Orders</div>
+                            </div>
+                        </div>
+                    </a>
+                </nav>
+            </div>
+        </div>
+        <!-- Wishlist-->
+        <div class="col-lg-8 pb-5">
+            <!-- Item-->
+            <div>
+                <h3>Order History</h3>
+            </div>
+            <ng-container *ngIf="isLoading">
+                <app-loader></app-loader>
+            </ng-container>
+            <ng-container *ngIf="orders!=null">
+                <div class="tables table-responsive">
+                    <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+                        <ng-container *ngIf="orders!=null">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Transaction Id</th>
+                                        <th>Payment</th>
+                                        <th>Option</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let order of orders"
+                                        [routerLink]="['/order/details',order!.id]">
+                                        <th scope="row">{{order!.id}}</th>
+                                        <td>{{order!.transactionId}}</td>
+                                        <td>{{order!.paymentReferenceId!=null?order!.paymentReferenceId:'Not Paid'}}
+                                        </td>
+                                        <td>{{app.decodeOption(order!.paymentOption)}}</td>
+                                        <td>&#8358;{{app.toMoney(order!.totalAmount)}}</td>
+                                        <td>{{order!.createdDate}}</td>
+                                        <td class="{{order.status}}">
+                                            <span>
+                                                {{app.decodeStatus(order!.status)}}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </ng-container>
+                        <ng-container *ngIf="orders==null">
+                            <div class="errorWrapper">
+                                No Order Available
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <!-- <div *ngFor="" class="cart-item d-md-flex justify-content-between"><span
+                        class="remove-item">
+                    </span>
+                    <div class="px-3 my-3">
+                        <a class="cart-item-product" href="order-details/{{items.id}}">
+                            <div class="cart-item-product-thumb">
+                            </div>
+                            <div class="cart-item-product-info">
+                                <h4 class="cart-item-product-title">{{items.createdDate}}</h4>
+                                <div class="text-lg text-body font-weight-medium pb-1">Total: &#8358;{{items.totalAmount}}
+                                </div>
+                                <span>Dilevery Fee: &#8358;{{items.deliveryFee}}</span>
+                            </div>
+                        </a>
+                    </div>
+                </div> -->
+            </ng-container>
+            <ng-container *ngIf="orders==null && !isLoading">
+                <div class="error-message">
+                    You have not make any Order yet.
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

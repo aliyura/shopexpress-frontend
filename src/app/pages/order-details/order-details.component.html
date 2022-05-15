@@ -1,0 +1,75 @@
+<app-header-inner></app-header-inner>
+<!--product-details-area start-->
+<div class="product-details-area">
+    <div class="container">
+        <!--container-fluid-->
+        <div class="product-details">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <div class="sidebar">
+                        <app-latest-items></app-latest-items>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8">
+                    <div class="tab-content">
+                        <div class="section-title">
+                            <h3>My Order Details</h3>
+                        </div>
+                        <ng-container *ngIf="isLoading">
+                            <app-loader></app-loader>
+                        </ng-container>
+
+                        <ng-container *ngIf="itemsList!=null">
+                            <ng-container *ngFor="let order of itemsList">
+
+                                <div id="list-products" class="tab-pane active">
+                                    <div class="product-single wide-style">
+                                        <div class="row align-items-center">
+                                            <div class="col-xl-3 col-lg-6 col-md-6">
+                                                <div class="product-thumb">
+                                                    <a [routerLink]="['/product',order.details.productId]">
+                                                        <img class="product-list-veiw"
+                                                           (error)="setDefault($event)"   src="https://herb.ng.s3.amazonaws.com/pictures/{{order.product.thumbnail}}"
+                                                            alt="" /></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-8 col-md-8  mt-md-50 sm-mt-50">
+                                                <div class="product-title">
+                                                    <h4><a
+                                                            [routerLink]="['/product',order.details.productId]">{{order.details.productName}}</a>
+                                                    </h4>
+                                                    <p><b>Qunatity: </b>{{order.details.quantity}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-4 col-md-4">
+                                                <div class="product-action stuck text-left">
+                                                    <div class="free-delivery">
+                                                        <!-- <i class="ti-truck"></i> {{order.details.price}} -->
+                                                    </div>
+                                                    <div class="product-price-rating_">
+                                                        <h4>
+
+                                                            <div><span>Total:
+                                                                    &#8358;{{app.toMoney(order.details.amount)}}</span>
+                                                            </div>
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="itemsList==null && !isLoading">
+                            <div class="error-message">
+                                Order not Found
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

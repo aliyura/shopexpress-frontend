@@ -1,0 +1,133 @@
+<!--footer-area start-->
+<footer>
+    <div class="footer-area" *ngIf="!isMobile">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="company-info">
+                        <img src="assets/images/logoBlack.png" alt="logo" />
+                        <p>Suite 12C Mike Ejeze by Freedom Way, Lekki Lagos Nigeria </p>
+                        <p>Phone: +2347062029832, +2349030502606</p>
+                        <p>Email: support@herb.ng.com.ng, order@herb.ng.com.ng</p>
+                    </div>
+                    <div class="social-icons style-2 style-4">
+                        <strong>GET IN TOUCH !</strong>
+                        <a href="https://web.facebook.com/herb.ngnigeria"><i class="fa fa-facebook"></i></a>
+                        <a href="https://twitter.com/herb.ngNg"><i class="fa fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/herb.ngnigeria/"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-youtube"></i></a>
+                    </div>
+
+                    <div class="style-2 style-4 mt-5">
+                        <strong>GET MOBILE APP</strong>
+                        <a href="https://play.google.com/store/apps/details?id=syrol.herb.ng.com.ng">
+                            <img src="assets/images/download-app.png" class="download img img-responsive">
+                        </a>
+                    </div>
+                    <div class="style-2 style-4 mt-5 chat-with-us">
+                        <a href="https://wa.me/message/O7B4ZAZO7E7EF1">
+                            <span>Chat with Us</span> <img src="assets/images/chat.png">
+                        </a>
+                    </div>
+
+
+                </div>
+                <div class="col-lg-8 mt-sm-45">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="fooer-widget">
+                                <h4>Find It Fast</h4>
+                                <div class="footer-menu">
+                                    <ul>
+                                        <li *ngFor="let cats of categories"><a
+                                                href="/market/{{cats.category.id}}">{{cats.category.name}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="fooer-widget">
+                                <h4>Information</h4>
+                                <div class="footer-menu">
+                                    <ul>
+                                        <li><a [routerLink]="['/about']">About Us</a></li>
+                                        <li><a [routerLink]="['/contact']">Contact Us</a></li>
+                                        <li><a href="#">Delivery information</a></li>
+                                        <li><a [routerLink]="['/privacy']">Privacy Policy</a></li>
+                                        <li><a [routerLink]="['/terms']">Terms & Conditions</a></li>
+                                        <li><a [routerLink]="['/cards']">Gift Cards</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 mt-sm-35">
+                            <div class="fooer-widget">
+                                <h4>Customer Care</h4>
+                                <div class="footer-menu">
+                                    <ul>
+                                        <li><a [routerLink]="['/profile']">My Account</a></li>
+                                        <li><a [routerLink]="['/orders']">Order History</a></li>
+                                        <li><a href="#">Wish List</a></li>
+                                        <li><a [routerLink]="['/contact']">Customer Service</a></li>
+                                        <li><a [routerLink]="['/faqs']">FAQs</a></li>
+                                        <li><a href="#">Product Support</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--subscribe-area-start-->
+    <div class="subscribe-area pd-25">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                  <div class="subscribe-text">
+                    <p class="pt-2 pb-2">Checkout our <a [routerLink]="['/faqs']">Frequently Asked Questions</a></p>
+                  </div>
+                     <div class="subscribe-text">
+                        <h3>Sign Up to <strong>Newsletter</strong></h3>
+                        <p>Subscribe our newsletter gor get notification about information discount.</p>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="subscribe-form style-3"  *ngIf="this.savedSubscription==null">
+                      <form name="subscriptionForm" method="post">
+                        <input type="text" name="contact" placeholder="Your Phone number or email" required="true" (keyup)="form.validate($event)" />
+                        <button (click)="addSubscription();">Subscribe</button>
+                      </form>
+                    </div>
+                    <div class="subscribe-form style-3 center-text"  *ngIf="this.savedSubscription!=null">
+                       <h2>Subscribed</h2>
+                       <p>You will now be receving Notifications from us</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--subscribe-area-end-->
+
+    <!--copyright-area start-->
+    <div class="copyright-area pd-20">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <div class="copyright style-2">
+                        <p>Copyright 2021&copy; <a href="https://syrol.org">Syrol Technologies</a>. All rights reserved.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="payment-gateways pull-right">
+                        <img src="assets/images/payment-ways.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--copyright-area end-->
+</footer>
+<!--footer-area end-->

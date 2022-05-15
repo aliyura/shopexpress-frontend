@@ -1,0 +1,12 @@
+
+<h1 mat-dialog-title>{{title}}
+  <span class="material-icons close-icon" (click)="closeDialog()">
+    cancel_presentation
+    </span>
+</h1>
+<div mat-dialog-content>{{body}}</div>
+<div class="group-button dialog-buttons" mat-dialog-actions>
+  <button class="btn btn-sidekiq bg-danger" mat-button mat-dialog-close (click)="this.call(0)">No</button>
+  <button class="btn btn-sidekiq native" mat-button mat-dialog-close (click)="this.call(1)">
+    Continue</button>
+</div>

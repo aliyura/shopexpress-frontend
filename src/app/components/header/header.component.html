@@ -1,0 +1,86 @@
+<app-top></app-top>
+<div class="sticker mainmenu-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 pr-0 d-none-sm">
+        <div class="collapse-menu style-2 mt-0">
+          <ul>
+            <li><a href="javascript:void(0);" class="vm-menu"><i class="fa fa-navicon"></i><span>All
+                  Categories</span></a>
+              <ng-container *ngIf="isLoading">
+                <app-loader></app-loader>
+              </ng-container>
+              <ng-container *ngIf="!isLoading">
+
+                <ul class="vm-dropdown">
+                  <ng-container *ngFor="let item of categories">
+                    <ng-container *ngIf="item.subCategories!=null">
+
+                      <li><a [routerLink]="['/market',item.category.id]">
+                          <img *ngIf="item.category.icon!=null"
+                            src="assets/images/category/{{item.category.icon!=null?item.category.icon:'assets/images/category/default.jpg'}}"
+                            class="category-image-icon">{{item.category.name}}<b class="caret"></b>
+                        </a>
+                        <ul class="mega-menu">
+                          <li class="megamenu-single">
+                            <ul>
+                              <li *ngFor="let subCategory of item.subCategories"><a
+                                  [routerLink]="['/market/',subCategory.categoryId,subCategory.id]">{{subCategory.name}}</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ng-container>
+                    <ng-container *ngIf="item.subCategories==null">
+                      <li>
+                        <a [routerLink]="['/market',item.category.id]">
+                          <img *ngIf="item.category.icon!=null"
+                            src="assets/images/category/{{item.category.icon!=null?item.category.icon:'assets/images/category/default.jpg'}}"
+                            class="category-image-icon">{{item.category.name}}
+                        </a>
+                      </li>
+                    </ng-container>
+                    <ng-container *ngIf="item.categories!=null">
+                      <div class="error-message">
+                        No Category Available
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                </ul>
+              </ng-container>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-9 pl-0">
+        <div class="slider-top">
+          <div class="row align-items-center">
+            <div class="col-xl-9">
+              <div class="mainmenu style-2">
+                <nav>
+                  <ul>
+                    <li><a [routerLink]="['/']">Home</a></li>
+                    <li><a [routerLink]="['/market']">Market</a></li>
+                    <li><a [routerLink]="['/shops']">Shops</a></li>
+                    <li><a [routerLink]="['/about']">About Us</a></li>
+                    <li><a [routerLink]="['/contact']">Contact Us</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div class="col-xl-3 d-lg-none d-xl-block">
+              <div class="social-icons style-3 pull-right">
+                <a href="https://web.facebook.com/herb.ngnigeria"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/herb.ngNg"><i class="fa fa-twitter"></i></a>
+                <a href="https://www.instagram.com/herb.ngnigeria/"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--mainmenu-area end-->

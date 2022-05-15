@@ -1,0 +1,49 @@
+<div id="new-arrivals" class="tab-pane fade in show active mt-5">
+  <h4>Phone & Accessories</h4>
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <div class="row products-three_cv-visible">
+    <ng-container *ngIf="!isLoading">
+      <ng-container *ngIf="items!=null">
+
+        <div class="col-md-2 col-lg-2   product-card mb-5" *ngFor="let item of items">
+          <!--single-product-->
+          <div class="product-single">
+            <div class="product-title">
+              <small><a [routerLink]="['/market',item.categoryId]">{{item.categoryName}}</a></small>
+              <h4><a [routerLink]="['/product',item.id]">{{item.name |
+                  excerpt:31}}</a>
+              </h4>
+            </div>
+            <div class="product-thumb">
+              <a [routerLink]="['/product',item.id]"><img class="img img-responsive product-image"
+                  (error)="setDefault($event)"
+                  src="https://herb.ng.s3.amazonaws.com/pictures/{{item.thumbnail}}"
+                  alt="" /></a>
+              <div class="downsale" *ngIf="item.status=='AC'">
+                <span>-</span>{{item.price>0 ?percentage:100}}%
+              </div>
+              <div class="downsale" *ngIf="item.status=='OS'">Out of Stock</div>
+            </div>
+            <div class="product-price-rating" *ngIf="item.price>0">
+              <span>&#8358;{{app.toMoney(item.price)}}</span>
+              <del>&#8358;{{app.toMoney((item.price*100)/80)}}</del>
+            </div>
+            <div class="product-price-rating" *ngIf="item.price<=0">
+              <span>Free</span>
+            </div>
+            <div class="product-action" *ngIf="item.status=='AC'">
+              <a href="javascript:void(0);" (click)="addToCart(1,item)" class="add-to-cart"><span class="fa fa-shopping-cart"></span> Select</a>
+              <a href="javascript:void(0);" (click)="buy(1,item)" class="add-to-cart buy">Buy</a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="items==null">
+        <div class="error-message">
+          No Product Available
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
